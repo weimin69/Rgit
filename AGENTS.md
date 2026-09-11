@@ -55,11 +55,24 @@ Prefer the simplest implementation that teaches the underlying mechanism.
 
 Unless explicitly requested:
 
+- do not edit production code for the developer
+- do not add dependencies
+- do not update project progress files as if a feature is learned
 - do not implement entire features for the developer
 - do not perform large rewrites
 - do not introduce unnecessary abstractions
-- do not introduce unnecessary dependencies
 - do not redesign existing architecture
+
+Default workflow:
+
+1. Explain the Git concept.
+2. Point to the exact file/function the developer should edit.
+3. Give a small implementation hint or pseudocode.
+4. Ask the developer to write the code manually.
+5. Review the developer's code after they share it or ask for review.
+
+Only edit repository files when the developer explicitly asks the AI to make the change.
+If the developer says "continue", treat that as continuing the lesson, not permission to write code.
 
 When the developer is stuck:
 

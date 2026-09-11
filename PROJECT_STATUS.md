@@ -2,49 +2,53 @@
 
 ## Current Stage
 
-Stage 0 — Project Initialization
+Stage 1 — Git Object Database
 
-当前目标是创建一个使用 Rust 编写的最小 Git 实现。
+当前目标是理解并实现 Git object database 的最小版本。
 
 项目不会完整复刻 Git，而是优先实现 Git 最核心、最有学习价值的功能。
 
 ## Completed
 
-- [ ] 创建 Rust 项目
-- [ ] 建立基础目录结构
-- [ ] 实现 CLI 入口
+- [x] 创建 Rust 项目
+- [x] 建立基础目录结构
+- [x] 实现 CLI 入口
+- [x] 实现 `Rgit init`
+- [x] 手动验证 `Rgit init` 生成的 `.git` 目录结构
+- [x] 实现 `Rgit hash-object <file>` 计算 blob object id
 
 ## In Progress
 
-当前正在建立项目基础结构，并准备理解 Git repository 的基本组成。
+当前正在实现 Git loose object 写入。
 
 重点概念：
 
-- `.git` 目录
-- objects
-- refs
-- HEAD
-- index
-- working tree
+- blob object
+- Git object header
+- SHA-1 object id
+- zlib compression
+- loose object storage
 
 ## Next Step
 
-实现第一个命令：
+扩展：
 
 ```bash
-rust-git init
+Rgit hash-object -w <file>
 ```
 
 目标：
 
-- 创建 `.git/`
-- 创建 `.git/objects/`
-- 创建 `.git/refs/heads/`
-- 创建 `.git/HEAD`
+- 读取文件内容
+- 构造 Git blob 数据：`blob <size>\0<content>`
+- 计算 SHA-1
+- 使用 zlib 压缩 object 数据
+- 写入 `.git/objects/xx/yyyy...`
+- 继续打印 object id
 
 同时理解：
 
-> 一个 Git repository 初始化之后，磁盘上到底创建了什么？
+> Git object id 决定 object 的存储路径，object 内容会被压缩后作为 loose object 保存。
 
 ## Architecture Notes
 
