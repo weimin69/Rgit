@@ -1,6 +1,5 @@
 mod objects;
 mod repository;
-mod std::in;
 use std::env;
 use std::fs;
 use std::path::Path;
